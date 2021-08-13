@@ -228,7 +228,34 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-function getBiggestBoxOfficeMovie() {}
+function getBiggestBoxOfficeMovie(movies) {
+  let highestGrossingMovie = [];
+  let highestAmount;
+  let highestAmountArr = [];
+  let grossedTitleObj ={}
+
+  if(!movies.length){
+    return null;
+  }
+    for(let movie of movies){
+      let boxofficeAmount = movie.boxOffice.slice(1);// trying to get rid of $
+      let splitAmount = boxofficeAmount.split(",");// creating an array to later join 
+
+      highestAmount = splitAmount.join('');// got rid of , using this method, still a string
+      highestAmountArr.push(Number(highestAmount));// creating an array of numbers
+
+      highestGrossingMovie.push(movie.title);// pushing the corresponding titles into array
+    }
+      let maxGrossed = highestAmountArr[0];
+      for(let i = 1; i < highestAmountArr.length; i++){
+        if (maxGrossed < highestAmountArr[i]){
+          maxGrossed = highestAmountArr[i];
+          highestGrossed = highestGrossingMovie[i];
+        }
+      }
+        return highestGrossed;
+} 
+getBiggestBoxOfficeMovie(exampleMovies)
 
 // Do not change anything below this line.
 module.exports = {
