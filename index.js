@@ -121,8 +121,22 @@ console.log(countByRating(exampleMovies));
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, ID) {
+  let movieObj = null; 
 
+  if(!movies.length){
+    return null;
+  } 
+    for (let movie of movies){
+      if (movie.imdbID === ID){
+        movieObj = movie;
+      } 
+    } 
+      return movieObj;
+  }   
+      
+
+console.log(findById(exampleMovies, "tt1979376"));
 /**
  * filterByGenre()
  * -----------------------------
