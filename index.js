@@ -240,15 +240,16 @@ function getBiggestBoxOfficeMovie(movies) {
     for(let movie of movies){
       let boxofficeAmount = movie.boxOffice.slice(1);// trying to get rid of $
       let splitAmount = boxofficeAmount.split(",");// creating an array to later join 
+      let titles = movie.title;
 
       highestAmount = splitAmount.join('');// got rid of , using this method, still a string
       highestAmountArr.push(Number(highestAmount));// creating an array of numbers
 
-      highestGrossingMovie.push(movie.title);// pushing the corresponding titles into array
+      highestGrossingMovie.push(titles);// pushing the corresponding titles into array
     }
-      let maxGrossed = highestAmountArr[0];
-      for(let i = 1; i < highestAmountArr.length; i++){
-        if (maxGrossed < highestAmountArr[i]){
+      let maxGrossed = 0;
+      for(let i = 0; i < highestAmountArr.length; i++){
+        if (highestAmountArr[i] > maxGrossed){
           maxGrossed = highestAmountArr[i];
           highestGrossed = highestGrossingMovie[i];
         }
