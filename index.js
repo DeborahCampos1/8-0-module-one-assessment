@@ -94,8 +94,19 @@ getAverageIMDBRating(exampleMovies);
  *  countByRating(movies);
  *  //> { G: 3, PG: 7 }
  */
-function countByRating() {}
+function countByRating(movies) {
+    let movieRatingsObj = {};
 
+    for (let movie of movies){
+      if (!movieRatingsObj[movie.rated]){
+        movieRatingsObj[movie.rated] = 1;
+      } else if (movieRatingsObj[movie.rated]){
+        movieRatingsObj[movie.rated] += 1;
+      }
+    }
+      return movieRatingsObj;
+}
+console.log(countByRating(exampleMovies));
 /**
  * findById()
  * -----------------------------
