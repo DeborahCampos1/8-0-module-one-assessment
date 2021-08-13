@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -36,7 +37,7 @@ function getAllMovieTitles(movies) {
   }
     return allTitlesArr;
 }
-console.log(getAllMovieTitles(exampleMovies))
+//console.log(getAllMovieTitles(exampleMovies))
 /**
  * getHighestMetascore()
  * -----------------------------
@@ -58,7 +59,7 @@ function getHighestMetascore(movies) {
   } 
     return highestMetaScore;
 }
-console.log(getHighestMetascore(exampleMovies));
+//console.log(getHighestMetascore(exampleMovies));
 /**
  * getAverageIMDBRating()
  * -----------------------------
@@ -82,7 +83,7 @@ function getAverageIMDBRating(movies) {
     let avgRating = sumOfIMDB/movies.length
     return avgRating;
 }
-getAverageIMDBRating(exampleMovies);
+//getAverageIMDBRating(exampleMovies);
 /**
  * countByRating()
  * -----------------------------
@@ -106,7 +107,7 @@ function countByRating(movies) {
     }
       return movieRatingsObj;
 }
-console.log(countByRating(exampleMovies));
+//console.log(countByRating(exampleMovies));
 /**
  * findById()
  * -----------------------------
@@ -136,7 +137,7 @@ function findById(movies, ID) {
   }   
       
 
-console.log(findById(exampleMovies, "tt1979376"));
+//console.log(findById(exampleMovies, "tt1979376"));
 /**
  * filterByGenre()
  * -----------------------------
@@ -157,8 +158,26 @@ console.log(findById(exampleMovies, "tt1979376"));
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
-
+function filterByGenre(movies, genresS) {
+  let matchingGenresArr = [];
+  let genreArr = [];
+  let genres = genresS[0].toUpperCase() + genresS.slice(1).toLowerCase() // capitalizes first letter, lower cases each letter after
+console.log(genres)
+  if (!movies.length){
+    return [];
+  }
+    for(let movie of movies){
+      let movieGenre = movie.genre;
+      genreArr = movieGenre.split(", ");
+      //console.log(genreArr);
+      // for (let genre of genreArr){
+        if (genreArr.includes(genres)){
+          matchingGenresArr.push(movie)
+      }
+    } 
+    return matchingGenresArr;//console.log(matchingGenresArr);
+}
+//console.log(filterByGenre(exampleMovies,"fantasy"))
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
  * -----------------------------
